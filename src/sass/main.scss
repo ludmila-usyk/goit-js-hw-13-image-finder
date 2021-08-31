@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: fangsong;
+  background-color: rgb(218, 214, 214);
+  color: #212121;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  margin: 2% auto;
+}
+
+.input {
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+.search {
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.tittle {
+  font-family: fangsong;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+  margin-top: -30px;
+  margin-right: 30px;
+}
+
+.stats {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.stats-item {
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.photo-card {
+  margin-left: 30px;
+  margin-top: 30px;
+  flex-basis: calc(25% - 30px);
+}
+
+.load-more {
+  font-family: fangsong;
+  display: block;
+  justify-content: center;
+  margin: 2% auto;
+  border-radius: 8px;
+  padding: 5px;
+}
