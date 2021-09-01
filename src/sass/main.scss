@@ -16,6 +16,8 @@ body {
   justify-content: center;
   height: 40px;
   margin: 2% auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .input {
@@ -33,6 +35,8 @@ body {
   font-family: fangsong;
   display: flex;
   justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .gallery {
@@ -69,7 +73,7 @@ body {
   font-family: fangsong;
   display: block;
   justify-content: center;
-  margin: 2% auto;
+  margin: 4% auto;
   border-radius: 8px;
   padding: 5px;
 }
