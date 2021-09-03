@@ -34,7 +34,7 @@ const handlerSubmit = (e) => {
     if (searchValue === refs.input.value) return;
     searchValue = refs.input.value;
   
-    fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${KEY}`)
+    fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=25&key=${KEY}`)
     .then(response => response.json())
     .then(photo => {
        if (photo.hits.length === 0) {
