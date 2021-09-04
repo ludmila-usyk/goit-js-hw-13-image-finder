@@ -77,3 +77,10 @@ body {
   border-radius: 8px;
   padding: 5px;
 }
+.button.is-hidden {
+  display: none;
+}
+
+.button>.spinner.is-hidden {
+  display: none;
+}

@@ -4,6 +4,7 @@ import photoCardsTpl from './template.hbs';
 import { error, defaultModules } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import * as PNotifyMobile from '../node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/BrightTheme.css';
+import LoadMoreBtn from './components/load-more-btn';
 
 //переменные
 const BASE_URL = 'https://pixabay.com/api/';
@@ -11,20 +12,6 @@ const KEY = '23121474-dc8d36b74d53a13d4dcab8680';
 let page = 1;
 let searchValue = '';//поиск
 
-
-// //посылаем запрос на бекенд
-// const handlerSubmit = (e) => {
-//   e.preventDefault()
-  
-//   //задаем поиск
-//   if (searchValue === refs.input.value) return;
-//   searchValue = refs.input.value;
-
-//   fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${KEY}`)
-//   .then(response => response.json())
-//   .then(photo => renderPhoto(photo.hits))
-//   .catch(err => console.log(err))
-// }
 
 //посылаем запрос на бекенд
 const handlerSubmit = (e) => {
@@ -34,6 +21,9 @@ const handlerSubmit = (e) => {
     if (searchValue === refs.input.value) return;
     searchValue = refs.input.value;
   
+        loadMoreBtn.show();
+        loadMoreBtn.disable();
+
     fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=25&key=${KEY}`)
     .then(response => response.json())
     .then(photo => {
@@ -44,7 +34,8 @@ const handlerSubmit = (e) => {
           });
        } else {
            clearGallery();
-            renderPhoto(photo.hits);
+           renderPhoto(photo.hits);
+           loadMoreBtn.enable();
        }
     })
     .then(() => page++)
@@ -52,27 +43,16 @@ const handlerSubmit = (e) => {
     .catch(err => {
         defaultModules.set(PNotifyMobile, {});
         clearGallery();
-        // error({
-        //     text: 'Nothing found',
-        //     delay: 1000,
-        // });
+        error({
+            text: 'Nothing found',
+            delay: 1000,
+        });
     })
   };
 
 refs.form.addEventListener('submit', handlerSubmit);
 refs.loadMore.addEventListener('click', loadMore);
 
-// function createGallery (arr) {
-//   for(let obj of arr) {
-//     createImg(obj)
-//   }
-// }
-
-// function createImg(obj) {
-//   const img = document.createElement('img')
-//   img.src = obj.webformatURL;
-//   refs.gallery.appendChild(img)
-// };
 
 function renderPhoto(photo) {
     refs.gallery.insertAdjacentHTML('beforeend', photoCardsTpl(photo));
@@ -88,7 +68,10 @@ function clearContent() {
 
 function loadMore (e) { //добавляет елементы
     e.preventDefault();
-    
+
+        loadMoreBtn.show();
+        loadMoreBtn.disable();
+
     fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${KEY}`)
     .then(response => response.json())
     .then(photo => {
@@ -99,6 +82,7 @@ function loadMore (e) { //добавляет елементы
           });
        } else {
             renderPhoto(photo.hits);
+            loadMoreBtn.enable();
        }
     })
     .then(() => page++)
@@ -106,9 +90,27 @@ function loadMore (e) { //добавляет елементы
     .catch(err => {
         defaultModules.set(PNotifyMobile, {});
         clearGallery();
+
         error({
             text: 'Nothing found',
             delay: 1000,
         });
     })
 };
+
+const loadMoreBtn = new LoadMoreBtn({
+  selector: '[data-action="load-more"]',
+  hidden: true,
+});
+
+loadMoreBtn.refs.button.addEventListener('click', loadMore);
+
+// function loadMore() {
+//   loadMoreBtn.disable();
+//   handlerSubmit.loadMore().then(articles => {
+//     appendArticlesMarkup(articles);
+//     loadMoreBtn.enable();
+//   });
+// }
+
+
