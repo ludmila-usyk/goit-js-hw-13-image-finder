@@ -11,6 +11,11 @@ body {
   color: #212121;
 }
 
+img {
+  max-width: 300px;
+  height: auto;
+}
+
 .search-form {
   display: flex;
   justify-content: center;
@@ -77,10 +82,12 @@ body {
   border-radius: 8px;
   padding: 5px;
 }
+
 .button.is-hidden {
   display: none;
 }
 
-.button>.spinner.is-hidden {
+.button > .spinner.is-hidden {
   display: none;
 }
+
