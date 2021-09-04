@@ -23,7 +23,7 @@ const handlerSubmit = (e) => {
         loadMoreBtn.show();
         loadMoreBtn.disable();
 
-    fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=25&key=${KEY}`)
+    fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${KEY}`)
     .then(response => response.json())
     .then(photo => {
        if (photo.hits.length === 0) {
@@ -81,7 +81,7 @@ function loadMore (e) { //добавляет елементы
        }
     })
     .then(() => page++)
-    .then(clearContent)
+    .then(scrollOnLoadMore)
     .catch(err => {
         defaultModules.set(PNotifyMobile, {});
         clearGallery();
@@ -106,4 +106,4 @@ refs.loadMore.addEventListener('click', loadMore);
 function scrollOnLoadMore() {
   refs.label.scrollIntoView({ block: 'end', behavior: 'smooth'});
 }
-refs.loadMore.addEventListener("click", scrollOnLoadMore);
+

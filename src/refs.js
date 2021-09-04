@@ -6,3 +6,6 @@ export default {
     loadMore: document.querySelector('#load-more'),
     label: document.querySelector('.label'),
 }
+
+
+
