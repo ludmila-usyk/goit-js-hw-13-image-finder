@@ -3,5 +3,6 @@ export default {
     form: document.querySelector('.search-form'),
     search: document.querySelector('.search'),
     gallery: document.querySelector('.gallery'),
-    loadMore: document.querySelector('#load-more')
+    loadMore: document.querySelector('#load-more'),
+    label: document.querySelector('.label'),
 }

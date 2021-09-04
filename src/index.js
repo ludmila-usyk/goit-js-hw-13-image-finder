@@ -12,7 +12,6 @@ const KEY = '23121474-dc8d36b74d53a13d4dcab8680';
 let page = 1;
 let searchValue = '';//поиск
 
-
 //посылаем запрос на бекенд
 const handlerSubmit = (e) => {
     e.preventDefault()
@@ -50,13 +49,9 @@ const handlerSubmit = (e) => {
     })
   };
 
-refs.form.addEventListener('submit', handlerSubmit);
-refs.loadMore.addEventListener('click', loadMore);
-
-
 function renderPhoto(photo) {
     refs.gallery.insertAdjacentHTML('beforeend', photoCardsTpl(photo));
-  }
+};
 
 function clearGallery() {
     refs.gallery.innerHTML = '';
@@ -86,7 +81,7 @@ function loadMore (e) { //добавляет елементы
        }
     })
     .then(() => page++)
-    // .then(clearContent)
+    .then(clearContent)
     .catch(err => {
         defaultModules.set(PNotifyMobile, {});
         clearGallery();
@@ -104,13 +99,11 @@ const loadMoreBtn = new LoadMoreBtn({
 });
 
 loadMoreBtn.refs.button.addEventListener('click', loadMore);
-
-// function loadMore() {
-//   loadMoreBtn.disable();
-//   handlerSubmit.loadMore().then(articles => {
-//     appendArticlesMarkup(articles);
-//     loadMoreBtn.enable();
-//   });
-// }
+refs.form.addEventListener('submit', handlerSubmit);
+refs.loadMore.addEventListener('click', loadMore);
 
 
+function scrollOnLoadMore() {
+  refs.label.scrollIntoView({ block: 'end', behavior: 'smooth'});
+}
+refs.loadMore.addEventListener("click", scrollOnLoadMore);
