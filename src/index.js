@@ -6,6 +6,7 @@ import * as PNotifyMobile from '../node_modules/@pnotify/mobile/dist/PNotifyMobi
 import '@pnotify/core/dist/BrightTheme.css';
 import LoadMoreBtn from './components/load-more-btn';
 
+
 //переменные
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '23121474-dc8d36b74d53a13d4dcab8680';
