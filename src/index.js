@@ -39,6 +39,7 @@ const handlerSubmit = (e) => {
     })
     .then(() => page++)
     .then(clearContent)
+    // .then(scrollOnLoadMore)
     .catch(err => {
         defaultModules.set(PNotifyMobile, {});
         clearGallery();
@@ -64,8 +65,8 @@ function clearContent() {
 function loadMore (e) { //добавляет елементы
     e.preventDefault();
 
-        loadMoreBtn.show();
-        loadMoreBtn.disable();
+        // loadMoreBtn.show();
+        // loadMoreBtn.disable();
 
     fetch(`${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchValue}&page=${page}&per_page=12&key=${KEY}`)
     .then(response => response.json())
