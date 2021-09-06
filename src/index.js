@@ -5,6 +5,8 @@ import { error, defaultModules } from '../node_modules/@pnotify/core/dist/PNotif
 import * as PNotifyMobile from '../node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import LoadMoreBtn from './components/load-more-btn';
+import * as basicLightbox from 'basiclightbox';
+import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 
 
 //переменные
@@ -103,9 +105,36 @@ const loadMoreBtn = new LoadMoreBtn({
 loadMoreBtn.refs.button.addEventListener('click', loadMore);
 refs.form.addEventListener('submit', handlerSubmit);
 refs.loadMore.addEventListener('click', loadMore);
+refs.gallery.addEventListener('click', onOpenModal);
+// refs.gallery.addEventListener('click', onCloseModal);
 
 
 function scrollOnLoadMore() {
   refs.label.scrollIntoView({ block: 'end', behavior: 'smooth'});
 }
 
+function onOpenModal(e) {
+    e.preventDefault();
+    if (e.target.nodeName !== "IMG") {
+        return;
+    }
+    const largeImageURL = e.target.src;
+    const instance = basicLightbox.create(`<img src=${largeImageURL} width="1200" height="900" class="imgOpen">`);
+    instance.show();
+}
+
+// function closeByEscape(e) {
+//     if (e.key === "Escape") {
+//         onCloseModal(e);
+//     }
+// }
+
+// function onCloseModal(e) {
+//     if (e.target.nodeName === "IMG") {
+//         return;
+//     }
+//     window.removeEventListener("keyup", closeByEscape);
+//     window.removeEventListener('keydown', onNextImgClick);
+//     basicLightbox.classList.remove("is-open");
+//     imgOpen.src = "#";
+// }
