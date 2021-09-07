@@ -124,6 +124,7 @@ function onOpenModal(e) {
     window.addEventListener('keydown', onNextImgClick);
 }
 
+let currentEl = 0;
 function onNextImgClick(e) {
     const ARR_RIGHT_CODE = 'ArrowRight';
     const ARR_LEFT_CODE = 'ArrowLeft';
