@@ -106,7 +106,6 @@ loadMoreBtn.refs.button.addEventListener('click', loadMore);
 refs.form.addEventListener('submit', handlerSubmit);
 refs.loadMore.addEventListener('click', loadMore);
 refs.gallery.addEventListener('click', onOpenModal);
-// refs.gallery.addEventListener('click', onCloseModal);
 
 
 function scrollOnLoadMore() {
@@ -121,20 +120,22 @@ function onOpenModal(e) {
     const largeImageURL = e.target.src;
     const instance = basicLightbox.create(`<img src=${largeImageURL} width="1200" height="900" class="imgOpen">`);
     instance.show();
+
+    window.addEventListener('keydown', onNextImgClick);
 }
 
-// function closeByEscape(e) {
-//     if (e.key === "Escape") {
-//         onCloseModal(e);
-//     }
-// }
+function onNextImgClick(e) {
+    const ARR_RIGHT_CODE = 'ArrowRight';
+    const ARR_LEFT_CODE = 'ArrowLeft';
 
-// function onCloseModal(e) {
-//     if (e.target.nodeName === "IMG") {
-//         return;
-//     }
-//     window.removeEventListener("keyup", closeByEscape);
-//     window.removeEventListener('keydown', onNextImgClick);
-//     basicLightbox.classList.remove("is-open");
-//     imgOpen.src = "#";
-// }
+    if (e.code === ARR_RIGHT_CODE) {
+        currentEl += 1;
+    } else if (e.code === ARR_LEFT_CODE) {
+        currentEl -= 1;
+    } else {return};
+
+    if (currentEl >= 0 && currentEl < largeImageURL.length) {
+        refs.lightboxImage.src = `${largeImageURL[currentEl].original}`;
+        refs.lightboxImage.alt = `${largeImageURL[currentEl].description}`;
+    } else {currentEl = -1};
+}

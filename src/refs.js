@@ -5,6 +5,7 @@ export default {
     gallery: document.querySelector('.gallery'),
     loadMore: document.querySelector('#load-more'),
     label: document.querySelector('.label'),
+    lightboxImage: document.querySelector('.lightbox__image'),
 }
 
 
