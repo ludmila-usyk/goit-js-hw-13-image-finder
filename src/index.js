@@ -14,6 +14,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '23121474-dc8d36b74d53a13d4dcab8680';
 let page = 1;
 let searchValue = '';//поиск
+let currentEl = 0;
 
 //посылаем запрос на бекенд
 const handlerSubmit = (e) => {
@@ -124,7 +125,7 @@ function onOpenModal(e) {
     window.addEventListener('keydown', onNextImgClick);
 }
 
-let currentEl = 0;
+
 function onNextImgClick(e) {
     const ARR_RIGHT_CODE = 'ArrowRight';
     const ARR_LEFT_CODE = 'ArrowLeft';
